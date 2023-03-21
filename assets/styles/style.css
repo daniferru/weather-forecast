@@ -1,0 +1,79 @@
+*{
+    margin: 0;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background-image: linear-gradient(180deg, white, rgb(109, 195, 245));
+    background-repeat: no-repeat;
+}
+
+.weather-header{
+    padding: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    background-image: url("../images/clouds.PNG");
+    display: flex;
+    justify-content: center;
+}
+
+.container{
+    margin: 40px;
+    display: flex;
+    flex-direction: row;
+}
+
+.search-box{
+    margin: 40px;
+    max-width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input{
+    padding: 10px;
+    width: 20%;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-value{
+    border-radius: 8px;
+    padding: 10px;
+    width: 200px;
+    background-color:aliceblue;
+    text-align: center;
+    align-self: center;
+}
+
+.form{
+    width: 100%;
+}
+
+.form-group{
+    display: block;
+    width: 100%;
+    margin: 10px;
+}
+
+.searchBtn{
+    margin: 20px;
+    border-radius: 8px;
+    width: 200px;
+    border-color: rgb(109, 195, 245);
+    background-color:rgb(199, 219, 228);
+    align-self: center;
+}
+
+@media screen and (max-width:500px){
+    .input-value{
+        width: 100px;
+    }
+    .searchBtn{
+        width: 100px;
+    }
+}
