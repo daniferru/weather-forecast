@@ -8,14 +8,16 @@ var searchForm = document.querySelector('#search-form');
 var forecastCtn = document.querySelector('#forecast');
 var currentDay = document.querySelector('#today')
 var searchHistory = document.querySelector('#history');
+var currentWeather = document.querySelector('#currentWeather');
 
-function renderWeather(city, weather) {
+function renderWeather(weather) {
     var date = dayjs().format("MM/DD/YYYY");
+    var city = weather.name;
     var temp = weather.main.temp;
     var wind = weather.wind.speed;
-    var humidity = main.humidity;
+    var humidity = weather.main.humidity;
     var iconDesc = weather.weather[0].description || weather[0].main;
-    var iconUrl = "";
+    var iconUrl = `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`;
 
     var card = document.createElement("div");
     var cardMain = document.createElement("div");
@@ -24,6 +26,7 @@ function renderWeather(city, weather) {
     var windEl = document.createElement("p");
     var humidityEl = document.createElement("p");
     var iconDesc = document.createElement("img");
+    var weatherIcon = document.createElement("img");
 
     card.setAttribute("class", "card");
     cardMain.setAttribute("class", "card-main");
@@ -34,14 +37,14 @@ function renderWeather(city, weather) {
     windEl.setAttribute("class", "card-text");
     humidityEl.setAttribute("class", "card-text");
 
-    heading.textContent = "${city} (${date})";
+    heading.textContent = `${city} (${date})`;
     weatherIcon.setAttribute("alt", iconDesc);
     weatherIcon.setAttribute("src", iconUrl);
     weatherIcon.setAttribute("class", "weather-icon");
     heading.append(weatherIcon);
-    tempEl.textContent = "Temp: ${temp}°F";
-    windEl.textContent = "Wind: ${wind}MPH";
-    humidityEl.textContent = "Humidity: ${humidity}%";
+    tempEl.textContent = `Temp: ${temp}°F`;
+    windEl.textContent = `Wind: ${wind}MPH`;
+    humidityEl.textContent = `Humidity: ${humidity}%`;
     cardMain.append(heading, tempEl, windEl, humidityEl);
 
     currentWeather.innerHTML = "";
@@ -127,30 +130,18 @@ function fetchAPI(location) {
     })
     .then(function(data) {
         console.log(data);
+        renderWeather(data);
+        fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${data.coord.lat}&lon=${data.coord.lon}&appid=83a1b50101d0922adbf7df1b87997fb9`).then(function(res) {
+            return res.json();
+        })
+        .then(function(data) {
+            console.log(data);
+            renderForecast(data.list);
+        })
     })
     .catch(function(err) {
         console.error(err);
     });
-}
-
-function fetchCoordinates(search) {
-    var apiUrl = 
-
-    fetch(apiUrl)
-        .then(function(res) {
-            return res.json();
-        })
-        .then(function(data) {
-            if (!data[0]) {
-                alert("Location not found");
-            } else {
-                appendHistory(search);
-                fetchWeather(data[0]);
-            }
-        })
-        .catch(function(err) {
-            console.error(err);
-        });
 }
 
 // fuction for search history
