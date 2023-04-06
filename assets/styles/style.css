@@ -95,4 +95,8 @@ body{
     .searchBtn{
         width: 100px;
     }
+    .forecast {
+        flex-direction: column;
+        width: 200px;
+    }
 }

@@ -11,7 +11,7 @@ var searchHistory = document.querySelector('#history');
 var currentWeather = document.querySelector('#currentWeather');
 
 function renderWeather(weather) {
-    var date = dayjs().format("MM/DD/YYYY");
+    var date = dayjs().format("DD/MM/YYYY");
     var city = weather.name;
     var temp = weather.main.temp;
     var wind = weather.wind.speed;
@@ -81,29 +81,29 @@ function forecastCard(forecast) {
     humidityEl.setAttribute("class", "card-text");
 
     //content inside card
-    cardHead.textContent = dayjs(forecast.dt_txt).format("M/D/YYYY");
+    cardHead.textContent = dayjs(forecast.dt_txt).format("DD/MM/YYYY");
     weatherIcon.setAttribute("src", iconUrl);
     weatherIcon.setAttribute("alt", iconDesc);
-    tempEl.textContent = "Temp: ${temp}°F";
-    windEl.textContent = "Wind: ${wind}MPH";
-    humidityEl.textContent = "Humidity: ${humidity}%";
+    tempEl.textContent = `Temp: ${temp}°F`;
+    windEl.textContent = `Wind: ${wind}MPH`;
+    humidityEl.textContent = `Humidity: ${humidity}%`;
 
     forecastCtn.append(col);
 }
 
 // function to display daily forecast
 function renderForecast(dailyForecast) {
-    var startDay = dayjs().add(1, "day").start("day").unix();
-    var endDay = dayjs().add(5, "day").start("day").unix();
+    var startDay = dayjs().add(1, "day").startOf("day").unix();
+    var endDay = dayjs().add(5, "day").startOf("day").unix();
 
     var headCol = document.createElement("div");
     var heading = document.createElement("h4");
 
-    headCol.setAttribute("class", "col");
+    headCol.setAttribute("class", "col-12");
     heading.textContent = "5-Day Forecast:";
     headCol.append(heading);
 
-    forecastCtn.innerHTML = "";
+    forecastCtn.innerHTML = `https://api.openweathermap.org/data/2.5/forecast?lat=${data.list.lat}&lon=${data.list.lon}&appid=${APIKey}`;
     forecastCtn.append(headCol);
 
     for (var i = 0; i < dailyForecast.length; i++) {
@@ -131,7 +131,7 @@ function fetchAPI(location) {
     .then(function(data) {
         console.log(data);
         renderWeather(data);
-        fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${data.coord.lat}&lon=${data.coord.lon}&appid=83a1b50101d0922adbf7df1b87997fb9`).then(function(res) {
+        fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${data.coord.lat}&lon=${data.coord.lon}&appid=${APIKey}`).then(function(res) {
             return res.json();
         })
         .then(function(data) {

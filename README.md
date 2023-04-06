@@ -1,5 +1,7 @@
 # Weather-Forecast
 
+Daniella Ferrufino
+
 ## Description
 
 The purpose of this site is to allow users to check the current and future conditions for any city they would like to search for. They will be able to see what  city they're looking at, an icon representation of the weather conditions, the temperature, the humidity, and  the wind speed for each day.
