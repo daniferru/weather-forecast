@@ -23,11 +23,6 @@ body{
 .search-header{
     align-self: center;
 }
-.container{
-    margin: 40px;
-    display: flex;
-    flex-direction: row;
-}
 
 .search-box{
     margin: 40px;
@@ -35,6 +30,12 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.history-ctn {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 .input{
@@ -56,16 +57,6 @@ body{
 
 .h3{
     font-size: 30px;
-}
-
-.form{
-    width: 100%;
-}
-
-.form-group{
-    display: block;
-    width: 100%;
-    margin: 10px;
 }
 
 .searchBtn{
