@@ -12,25 +12,28 @@
         <header class="weather-header">
             <h1>Weather Dashboard</h1>
         </header>
-        <section class="search-box">
-                <h3 class="search-header aside">Search for a City:</h3> 
-                    <input class="input-value" id="inputValue" type="text" placeholder="Miami, Florida" aria-controls="today forecast"></br>
-                    <button class="searchBtn" id="search-input">Search</button>
-                    <div id="history"></div>
-        </section>
-        <section id="city">
-            <form id="historyCtn"></form>
-            <div id="currentWeather" class="today"></div>
-            <div id="icon"></div>
-            <div id="currentTemp"></div>
-            <div id="currentWind"></div>
-            <div id="currentHumidity"></div>
-        </section>
-
-        <section class="col" id="fiveDayCast">
+        <div class="topCtn">
+            <aside class="search-box">
+                    <h2 class="search-header aside">Search for a City:</h2> 
+                        <input class="input-value" id="inputValue" type="text" placeholder="Miami" aria-controls="today forecast"></br>
+                        <button class="searchBtn" id="search-input">Search</button>
+                        <div id="history"></div>
+                        <form id="historyCtn"></form>
+            </aside>
+            <div class ="currentCtn" id="city">
+                <h2 id="currentWeather" class="today"></h2>
+                <img id="icon"></img>
+                <p id="currentTemp"></p>
+                <p id="currentWind"></p>
+                <p id="currentHumidity"></p>
+            </div>
+        </div>
+        <section>
+            <div class="col" id="fiveDayCast">
             <div class="row" id="forecast"></div>
+            </div>
         </section>
-    
+        
         <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"

@@ -9,8 +9,10 @@ The purpose of this site is to allow users to check the current and future condi
 ## Installation
 
 No installation required, simply visit the deployed website link: 
-
+https://daniferru.github.io/weather-forecast/
 
 ## Usage
 
 Search for a city in the input box and press the search button. You will be presented with a 5-day forecast that displayes the date, a weather icon of weather conditions, the temperature, the humidity, and the wind speed for those days for that city. There will also be search history saved in your local storage when you click the input box to search for a city.
+
+![screenshot](./assets/images/readmemdscreenshot.PNG)

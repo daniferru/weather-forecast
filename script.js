@@ -15,6 +15,7 @@ var cityInput = document.querySelector('#inputValue');
 var historyCtn = document.getElementById('historyCtn');
 var searchHistory = document.getElementById('history');
 
+// search button
 search.addEventListener('click', (e) => {
     e.preventDefault();
     var city = cityInput.value;
@@ -24,8 +25,9 @@ search.addEventListener('click', (e) => {
     .then((response) => response.json())
     .then((data) => {
         console.log(data);
+        var iconV = data.weather[0].icon;
         currentWeather.textContent = data.name;
-        weatherIcon.src = `<img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png"/>`;
+        weatherIcon.src = "https://openweathermap.org/img/wn/" + iconV +".png";
         todayTemp.textContent = `Temp: ${data.main.temp} °F`;
         todayWind.textContent = `Wind: ${data.wind.speed} MPH`;
         todayHumidity.textContent = `Humidity: ${data.main.humidity} %`;
@@ -53,20 +55,22 @@ var newDate = dayjs(fiveDay).format("MM/DD");
 var iconUrl = `<img src="https://openweathermap.org/img/wn/${forecast.icon}.png"/>`;
 var fiveDayCast = $(`
     <div class="container text-black">
-        <div class="row align-tems-start">
-            <div class="col">${newDate}</div>
+        <div class="row align-items-start">
+            <div class="col fs-3">${newDate}</div>
             <div class="col">${iconUrl}</div>
-            <div class="col">Temp: ${forecast.weekTemp}°F</div>
-            <div class="col">Wind: ${forecast.weekWind}MPH</div>
-            <div class="col">Humidity: ${forecast.weekHumidity}%</div>
+            <div class="col fs-5">Temp: ${forecast.weekTemp}°F</div>
+            <div class="col fs-5">Wind: ${forecast.weekWind}MPH</div>
+            <div class="col fs-5">Humidity: ${forecast.weekHumidity}%</div>
         </div>
     </div>
 `);
+
 // apend to html
 $('#forecast').append(fiveDayCast);
         }
     });
 });
+
 // display today
 var todayDate = dayjs();
 $('.today').text(todayDate.format('MMMM D, YYYY'))
@@ -78,6 +82,7 @@ search.addEventListener("click", function() {
     searchItem.textContent = searchInput;
     historyCtn.appendChild(searchItem);
 });
+
 if(localStorage.getItem("cities")) {
     cityInput.value = localStorage.getItem("cities");
     const searchItem = document.createElement("li");
